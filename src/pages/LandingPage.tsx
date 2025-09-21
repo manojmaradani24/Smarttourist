@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { CheckCircle, TrendingUp, Shield, Zap, Factory, Calculator, X } from 'lucide-react';
+import { CheckCircle, TrendingUp, Shield, Zap, Factory, Calculator, X, Users, Code, Briefcase, BarChart, CreditCard, HelpCircle, Mail, ArrowRight } from 'lucide-react';
 import Header from '../components/Header';
 
 const LandingPage = () => {
@@ -18,11 +18,11 @@ const LandingPage = () => {
 
   // Predefined users with email and password
   const predefinedUsers = [
-    { email: 'manoj@gmail.com', password: 'manoj123' },
-    { email: 'geetha@gmail.com', password: 'geetha123' },
-    { email: 'surya@gmail.com', password: 'surya123' },
-    { email: 'josh@gmail.com', password: 'josh123' },
-    { email: 'nandini@gmail.com', password: 'nandini123' }
+    { email: 'manoj@gmail.com', password: 'manoj123', type: 'business' },
+    { email: 'geetha@gmail.com', password: 'geetha123', type: 'business' },
+    { email: 'surya@gmail.com', password: 'surya123', type: 'developer' },
+    { email: 'josh@gmail.com', password: 'josh123', type: 'developer' },
+    { email: 'nandini@gmail.com', password: 'nandini123', type: 'worker' }
   ];
 
   const handleLogin = (e) => {
@@ -35,8 +35,14 @@ const LandingPage = () => {
     );
     
     if (user) {
-      // Successful login - redirect to dashboard
-      navigate('/dashboard');
+      // Successful login - redirect to appropriate dashboard
+      if (user.type === 'business') {
+        navigate('/dashboard');
+      } else if (user.type === 'developer') {
+        navigate('/developer-portal');
+      } else if (user.type === 'worker') {
+        navigate('/pmkvy-portal');
+      }
       setShowAuthModal(false);
     } else {
       setLoginError('Invalid email or password. Please try again.');
@@ -82,6 +88,26 @@ const LandingPage = () => {
       icon: Calculator,
       title: 'Integrated Accounting',
       description: 'Professional accountants on-demand for your business'
+    },
+    {
+      icon: Users,
+      title: 'Employment Matching',
+      description: 'Find skilled workers from our database of 24.3L certified professionals'
+    },
+    {
+      icon: Code,
+      title: 'Developer API',
+      description: '50+ API endpoints to build custom integrations and extensions'
+    },
+    {
+      icon: BarChart,
+      title: 'Advanced Analytics',
+      description: 'Get actionable insights with AI-powered business intelligence'
+    },
+    {
+      icon: Briefcase,
+      title: 'Business Networking',
+      description: 'Connect with other MSMEs for collaborations and partnerships'
     }
   ];
 
@@ -99,6 +125,83 @@ const LandingPage = () => {
       image: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=150',
       quote: 'The manufacturing hub connected me with artisans in Rajasthan, creating 15 jobs while improving my margins.',
       metrics: '15 jobs created, 25% margin improvement'
+    },
+    {
+      name: 'Rajesh Singh',
+      role: 'Software Developer',
+      image: 'https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=150',
+      quote: 'The developer APIs are well-documented and powerful. I built an e-commerce integration in just 3 days.',
+      metrics: '30+ integrations built'
+    }
+  ];
+
+  const pricingPlans = [
+    {
+      name: 'Starter',
+      price: '₹999',
+      period: '/month',
+      description: 'Perfect for small businesses and startups',
+      features: [
+        'GST Filing for 1 Business',
+        'Up to 100 Invoices Monthly',
+        'Basic Inventory Management',
+        'Email Support',
+        'Basic Analytics Dashboard'
+      ],
+      cta: 'Get Started',
+      popular: false
+    },
+    {
+      name: 'Professional',
+      price: '₹2,499',
+      period: '/month',
+      description: 'For growing businesses with more needs',
+      features: [
+        'GST Filing for 2 Businesses',
+        'Unlimited Invoices',
+        'Advanced Inventory Management',
+        'E-commerce Integration (1 Channel)',
+        'API Access (Read Only)',
+        'Priority Email & Chat Support'
+      ],
+      cta: 'Get Started',
+      popular: true
+    },
+    {
+      name: 'Enterprise',
+      price: '₹4,999',
+      period: '/month',
+      description: 'For established businesses with complex needs',
+      features: [
+        'GST Filing for 5 Businesses',
+        'Unlimited Invoices',
+        'Multi-channel E-commerce Integration',
+        'Full API Access',
+        'Dedicated Account Manager',
+        'Phone & Priority Support',
+        'Custom Reports'
+      ],
+      cta: 'Contact Sales',
+      popular: false
+    }
+  ];
+
+  const faqItems = [
+    {
+      question: 'How does the GST automation work?',
+      answer: 'Our AI system automatically extracts data from your invoices, purchases, and bank statements to pre-fill your GST returns. You simply need to review and submit, reducing the process from hours to minutes.'
+    },
+    {
+      question: 'Is my data secure with SmartMerchant?',
+      answer: 'Yes, we use bank-level encryption and comply with all data protection regulations. Your financial data is never shared with third parties without your explicit permission.'
+    },
+    {
+      question: 'Can I integrate with my existing e-commerce platforms?',
+      answer: 'Absolutely. We support integration with all major e-commerce platforms including Amazon, Flipkart, Shopify, WooCommerce, and more. You can manage inventory and orders across all channels in one place.'
+    },
+    {
+      question: 'How does the job matching algorithm work?',
+      answer: 'Our AI analyzes worker skills, certifications, experience, and preferences to match them with employers seeking those specific qualifications. The system learns from successful placements to improve matches over time.'
     }
   ];
 
@@ -413,7 +516,6 @@ const LandingPage = () => {
               onClick={() => {
                 setShowAuthModal(true);
                 setIsLogin(true);
-                navigate('/developer-portal');
               }}
               className="w-full bg-indigo-600 text-white rounded-lg px-4 py-2 hover:bg-indigo-700 transition"
               >
@@ -443,7 +545,6 @@ const LandingPage = () => {
                 onClick={() => {
                 setShowAuthModal(true);
                 setIsLogin(true);
-                navigate('/pmkvy-portal');
               }}
                 className="w-full bg-indigo-600 text-white rounded-lg px-4 py-2 hover:bg-indigo-700 transition"
               >
@@ -487,8 +588,104 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Cost Comparison Section */}
+      {/* Extended Features Section */}
       <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-slate-900 mb-4">Complete Business Management Suite</h2>
+            <p className="text-xl text-slate-600">Everything you need to run and grow your business</p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-12">
+            <div>
+              <h3 className="text-2xl font-bold text-slate-900 mb-6">MSME Business Hub Features</h3>
+              <div className="space-y-6">
+                <div className="flex items-start">
+                  <div className="bg-indigo-100 p-2 rounded-lg mr-4">
+                    <CheckCircle className="h-6 w-6 text-indigo-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-slate-900 mb-1">Inventory Management</h4>
+                    <p className="text-slate-600">Track stock levels, set reorder points, and manage suppliers efficiently</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <div className="bg-indigo-100 p-2 rounded-lg mr-4">
+                    <CheckCircle className="h-6 w-6 text-indigo-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-slate-900 mb-1">Invoice Generation</h4>
+                    <p className="text-slate-600">Create professional invoices with automatic GST calculations in seconds</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <div className="bg-indigo-100 p-2 rounded-lg mr-4">
+                    <CheckCircle className="h-6 w-6 text-indigo-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-slate-900 mb-1">Bank Reconciliation</h4>
+                    <p className="text-slate-600">Automatically match transactions and reconcile accounts with your bank statements</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <div className="bg-indigo-100 p-2 rounded-lg mr-4">
+                    <CheckCircle className="h-6 w-6 text-indigo-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-slate-900 mb-1">Multi-device Access</h4>
+                    <p className="text-slate-600">Access your business data from desktop, tablet, or mobile anywhere, anytime</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <h3 className="text-2xl font-bold text-slate-900 mb-6">Developer Platform Features</h3>
+              <div className="space-y-6">
+                <div className="flex items-start">
+                  <div className="bg-indigo-100 p-2 rounded-lg mr-4">
+                    <CheckCircle className="h-6 w-6 text-indigo-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-slate-900 mb-1">RESTful APIs</h4>
+                    <p className="text-slate-600">50+ well-documented API endpoints for seamless integration</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <div className="bg-indigo-100 p-2 rounded-lg mr-4">
+                    <CheckCircle className="h-6 w-6 text-indigo-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-slate-900 mb-1">Sandbox Environment</h4>
+                    <p className="text-slate-600">Test your applications in a safe environment before going live</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <div className="bg-indigo-100 p-2 rounded-lg mr-4">
+                    <CheckCircle className="h-6 w-6 text-indigo-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-slate-900 mb-1">Theme Marketplace</h4>
+                    <p className="text-slate-600">Monetize your designs by selling themes to thousands of businesses</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <div className="bg-indigo-100 p-2 rounded-lg mr-4">
+                    <CheckCircle className="h-6 w-6 text-indigo-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-slate-900 mb-1">Revenue Sharing</h4>
+                    <p className="text-slate-600">Earn recurring revenue from your integrations and applications</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Cost Comparison Section */}
+      <section className="py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-slate-900 mb-4">Save 40-60% Compared to Competitors</h2>
@@ -506,8 +703,7 @@ const LandingPage = () => {
                   <div>Shiprocket: from ₹75/shipment (500g, basic plan, +GST)</div>
                   <div>Accountant: ~₹8,000/month (varies by city & firm)</div>
                   <div>WhatsApp API: 1700/month +charges</div>
-<div>Dukaan: from ₹375/month (Basic Plan, )no features</div>
-
+                  <div>Dukaan: from ₹375/month (Basic Plan, no features)</div>
                 </div>
               </div>
               
@@ -530,7 +726,116 @@ const LandingPage = () => {
                 </div>
               </div>
             </div>
-            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <section id="pricing" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-slate-900 mb-4">Simple, Transparent Pricing</h2>
+            <p className="text-xl text-slate-600">Choose the plan that works best for your business needs</p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {pricingPlans.map((plan, index) => (
+              <div key={index} className={`rounded-2xl p-8 border-2 ${plan.popular ? 'border-indigo-600 relative' : 'border-slate-200'}`}>
+                {plan.popular && (
+                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-indigo-600 text-white px-4 py-1 rounded-full text-sm font-medium">
+                    Most Popular
+                  </div>
+                )}
+                
+                <h3 className="text-2xl font-bold text-slate-900 mb-2">{plan.name}</h3>
+                <p className="text-slate-600 mb-6">{plan.description}</p>
+                
+                <div className="mb-6">
+                  <span className="text-4xl font-bold text-slate-900">{plan.price}</span>
+                  <span className="text-slate-600">{plan.period}</span>
+                </div>
+                
+                <ul className="space-y-3 mb-8">
+                  {plan.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-center">
+                      <CheckCircle className="h-5 w-5 text-green-500 mr-2" />
+                      <span className="text-slate-600">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                
+                <button 
+                  onClick={() => setShowAuthModal(true)}
+                  className={`w-full py-3 rounded-lg font-semibold ${
+                    plan.popular 
+                      ? 'bg-indigo-600 text-white hover:bg-indigo-700' 
+                      : 'bg-slate-100 text-slate-900 hover:bg-slate-200'
+                  }`}
+                >
+                  {plan.cta}
+                </button>
+              </div>
+            ))}
+          </div>
+          
+          <div className="text-center mt-12">
+            <p className="text-slate-600">Need a custom solution? <a href="#" className="text-indigo-600 font-semibold">Contact our sales team</a></p>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-slate-900 mb-4">What Our Users Say</h2>
+            <p className="text-xl text-slate-600">Join thousands of satisfied businesses and developers using our platform</p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <div key={index} className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+                <div className="flex items-center mb-4">
+                  <img src={testimonial.image} alt={testimonial.name} className="w-12 h-12 rounded-full mr-4" />
+                  <div>
+                    <h4 className="font-semibold text-slate-900">{testimonial.name}</h4>
+                    <p className="text-slate-600 text-sm">{testimonial.role}</p>
+                  </div>
+                </div>
+                <p className="text-slate-700 mb-4 italic">"{testimonial.quote}"</p>
+                <div className="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full inline-block">
+                  {testimonial.metrics}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-slate-900 mb-4">Frequently Asked Questions</h2>
+            <p className="text-xl text-slate-600">Find answers to common questions about SmartMerchant</p>
+          </div>
+          
+          <div className="space-y-6">
+            {faqItems.map((item, index) => (
+              <div key={index} className="border-b border-slate-200 pb-6">
+                <h3 className="text-lg font-semibold text-slate-900 mb-2">{item.question}</h3>
+                <p className="text-slate-600">{item.answer}</p>
+              </div>
+            ))}
+          </div>
+          
+          <div className="text-center mt-12">
+            <p className="text-slate-600 mb-4">Still have questions?</p>
+            <button className="bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-700 flex items-center justify-center mx-auto">
+              <Mail className="h-5 w-5 mr-2" />
+              Contact Support
+            </button>
+          </div>
         </div>
       </section>
 
@@ -562,6 +867,71 @@ const LandingPage = () => {
           <p className="text-indigo-200 text-sm mt-6">No credit card required • 14-day free trial • Cancel anytime</p>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="bg-slate-900 text-white py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-4 gap-8">
+            <div>
+              <h3 className="text-xl font-bold mb-4">SmartMerchant</h3>
+              <p className="text-slate-400">India's first AI-powered triple stack platform for MSMEs, developers, and skilled workers.</p>
+            </div>
+            
+            <div>
+              <h4 className="font-semibold mb-4">Platforms</h4>
+              <ul className="space-y-2 text-slate-400">
+                <li><a href="#" className="hover:text-white">MSME Business Hub</a></li>
+                <li><a href="#" className="hover:text-white">Developer Platform</a></li>
+                <li><a href="#" className="hover:text-white">PMKVY Workers Portal</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="font-semibold mb-4">Resources</h4>
+              <ul className="space-y-2 text-slate-400">
+                <li><a href="#" className="hover:text-white">Documentation</a></li>
+                <li><a href="#" className="hover:text-white">API Reference</a></li>
+                <li><a href="#" className="hover:text-white">Blog</a></li>
+                <li><a href="#" className="hover:text-white">Support</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="font-semibold mb-4">Company</h4>
+              <ul className="space-y-2 text-slate-400">
+                <li><a href="#" className="hover:text-white">About Us</a></li>
+                <li><a href="#" className="hover:text-white">Careers</a></li>
+                <li><a href="#" className="hover:text-white">Contact</a></li>
+                <li><a href="#" className="hover:text-white">Privacy Policy</a></li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="border-t border-slate-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+            <p className="text-slate-400">© 2023 SmartMerchant. All rights reserved.</p>
+            <div className="flex space-x-4 mt-4 md:mt-0">
+              <a href="#" className="text-slate-400 hover:text-white">
+                <span className="sr-only">Facebook</span>
+                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clipRule="evenodd" />
+                </svg>
+              </a>
+              <a href="#" className="text-slate-400 hover:text-white">
+                <span className="sr-only">Twitter</span>
+                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                </svg>
+              </a>
+              <a href="#" className="text-slate-400 hover:text-white">
+                <span className="sr-only">LinkedIn</span>
+                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fillRule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clipRule="evenodd" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
