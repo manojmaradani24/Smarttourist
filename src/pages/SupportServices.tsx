@@ -1,3 +1,6 @@
+
+import Header from '../components/Header';
+import Sidebar from '../components/Sidebar';
 import React, { useState } from 'react';
 
 const SupportServices: React.FC = () => {
@@ -6,17 +9,30 @@ const SupportServices: React.FC = () => {
   const [message, setMessage] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real application, you would send this data to your backend
-    console.log({ subject, message });
-    setIsSubmitted(true);
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setSubject('');
-      setMessage('');
-    }, 3000);
+
+    try {
+      const response = await fetch("http://localhost:5000/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ subject, message }),
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        setTimeout(() => {
+          setIsSubmitted(false);
+          setSubject("");
+          setMessage("");
+        }, 3000);
+      } else {
+        alert("❌ Failed to send message. Try again.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("❌ Something went wrong.");
+    }
   };
 
   const faqItems = [
@@ -62,8 +78,12 @@ const SupportServices: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="flex h-screen bg-slate-50">
+      <Sidebar />
+      <div className="flex-1 flex flex-col overflow-hidden">
+        <Header isDashboard={true} />
+        <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
         <div className="text-center">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Support & Services</h1>
           <p className="text-lg text-gray-600">Get help and explore additional services to grow your business</p>
@@ -210,29 +230,10 @@ const SupportServices: React.FC = () => {
                 </button>
               </div>
             </form>
-            
-            <div className="mt-8 pt-6 border-t border-gray-200">
-              <h3 className="text-lg font-semibold text-gray-800 mb-3">Other Ways to Reach Us</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="text-center p-4 bg-gray-50 rounded-lg">
-                  <div className="text-2xl mb-2">📧</div>
-                  <p className="font-medium text-gray-800">Email</p>
-                  <p className="text-gray-600">support@smartmerchant.com</p>
-                </div>
-                <div className="text-center p-4 bg-gray-50 rounded-lg">
-                  <div className="text-2xl mb-2">📞</div>
-                  <p className="font-medium text-gray-800">Phone</p>
-                  <p className="text-gray-600">+1 (800) 123-4567</p>
-                </div>
-                <div className="text-center p-4 bg-gray-50 rounded-lg">
-                  <div className="text-2xl mb-2">💬</div>
-                  <p className="font-medium text-gray-800">Live Chat</p>
-                  <p className="text-gray-600">Available 9AM-6PM EST</p>
-                </div>
-              </div>
-            </div>
           </div>
         )}
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -1,6 +1,8 @@
 // src/pages/customer.tsx
 import React, { useState } from 'react';
 import { Search, Filter, MoreHorizontal, Mail, User } from 'lucide-react';
+import Header from '../components/Header';
+import Sidebar from '../components/Sidebar';
 
 interface Customer {
   id: string;
@@ -36,7 +38,11 @@ const Customer: React.FC = () => {
   );
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
+    <div className="flex h-screen bg-slate-50">
+      <Sidebar />
+      <div className="flex-1 flex flex-col overflow-hidden">
+        <Header isDashboard={true} />
+        <div className="p-6 bg-gray-50 min-h-screen">
       {/* Header Section */}
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-gray-900 mb-2">Customers</h1>
@@ -133,6 +139,8 @@ const Customer: React.FC = () => {
                 Next
               </button>
             </div>
+          </div>
+        </div>
           </div>
         </div>
       </div>

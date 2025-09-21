@@ -1,10 +1,67 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { CheckCircle, TrendingUp, Shield, Zap, Factory, Calculator } from 'lucide-react';
+import { CheckCircle, TrendingUp, Shield, Zap, Factory, Calculator, X } from 'lucide-react';
 import Header from '../components/Header';
 
 const LandingPage = () => {
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [rememberMe, setRememberMe] = useState(false);
+  const [agreeToTerms, setAgreeToTerms] = useState(false);
+  const [loginError, setLoginError] = useState('');
+  const navigate = useNavigate();
+
+  // Predefined users with email and password
+  const predefinedUsers = [
+    { email: 'manoj@gmail.com', password: 'manoj123' },
+    { email: 'geetha@gmail.com', password: 'geetha123' },
+    { email: 'surya@gmail.com', password: 'surya123' },
+    { email: 'josh@gmail.com', password: 'josh123' },
+    { email: 'nandini@gmail.com', password: 'nandini123' }
+  ];
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    setLoginError('');
+    
+    // Check if credentials match any predefined user
+    const user = predefinedUsers.find(
+      user => user.email === email && user.password === password
+    );
+    
+    if (user) {
+      // Successful login - redirect to dashboard
+      navigate('/dashboard');
+      setShowAuthModal(false);
+    } else {
+      setLoginError('Invalid email or password. Please try again.');
+    }
+  };
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    // Basic validation
+    if (password !== confirmPassword) {
+      setLoginError('Passwords do not match');
+      return;
+    }
+    
+    if (!agreeToTerms) {
+      setLoginError('Please agree to the Terms of Service and Privacy Policy');
+      return;
+    }
+    
+    // For demo purposes, we'll just show a success message and switch to login
+    alert('Registration successful! Please login with your credentials.');
+    setIsLogin(true);
+    setLoginError('');
+  };
+
   const features = [
     {
       icon: Zap,
@@ -49,6 +106,174 @@ const LandingPage = () => {
     <div className="min-h-screen bg-white">
       <Header />
       
+      {/* Authentication Modal */}
+      {showAuthModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg w-full max-w-md animate-in">
+            <div className="flex justify-between items-center p-6 border-b border-slate-200">
+              <h2 className="text-xl font-semibold text-slate-800">
+                {isLogin ? 'Login to Your Account' : 'Create an Account'}
+              </h2>
+              <button 
+                onClick={() => {
+                  setShowAuthModal(false);
+                  setLoginError('');
+                }}
+                className="text-slate-400 hover:text-slate-600"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+            
+            <div className="p-6">
+              <div className="flex border-b border-slate-200 mb-6">
+                <button 
+                  onClick={() => {
+                    setIsLogin(true);
+                    setLoginError('');
+                  }}
+                  className={`py-2 px-4 mr-4 ${isLogin ? 'border-b-2 border-indigo-600 text-indigo-600 font-medium' : 'text-slate-600'}`}
+                >
+                  Login
+                </button>
+                <button 
+                  onClick={() => {
+                    setIsLogin(false);
+                    setLoginError('');
+                  }}
+                  className={`py-2 px-4 ${!isLogin ? 'border-b-2 border-indigo-600 text-indigo-600 font-medium' : 'text-slate-600'}`}
+                >
+                  Register
+                </button>
+              </div>
+              
+              {loginError && (
+                <div className="bg-red-50 text-red-700 p-3 rounded-lg mb-4 text-sm">
+                  {loginError}
+                </div>
+              )}
+              
+              <form onSubmit={isLogin ? handleLogin : handleRegister} className="space-y-4">
+                {!isLogin && (
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-1">Full Name</label>
+                    <input 
+                      type="text" 
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                      placeholder="Enter your name"
+                      required
+                    />
+                  </div>
+                )}
+                
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Email Address</label>
+                  <input 
+                    type="email" 
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    placeholder="Enter your email"
+                    required
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Password</label>
+                  <input 
+                    type="password" 
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    placeholder={isLogin ? "Enter your password" : "Create a password"}
+                    required
+                  />
+                </div>
+                
+                {!isLogin && (
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-1">Confirm Password</label>
+                    <input 
+                      type="password" 
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                      placeholder="Confirm your password"
+                      required
+                    />
+                  </div>
+                )}
+                
+                {isLogin && (
+                  <div className="flex items-center justify-between">
+                    <label className="flex items-center">
+                      <input 
+                        type="checkbox" 
+                        checked={rememberMe}
+                        onChange={(e) => setRememberMe(e.target.checked)}
+                        className="rounded text-indigo-600 focus:ring-indigo-500" 
+                      />
+                      <span className="ml-2 text-sm text-slate-600">Remember me</span>
+                    </label>
+                    <a href="#" className="text-sm text-indigo-600 hover:text-indigo-800">Forgot password?</a>
+                  </div>
+                )}
+                
+                {!isLogin && (
+                  <label className="flex items-start">
+                    <input 
+                      type="checkbox" 
+                      checked={agreeToTerms}
+                      onChange={(e) => setAgreeToTerms(e.target.checked)}
+                      className="rounded text-indigo-600 focus:ring-indigo-500 mt-1" 
+                    />
+                    <span className="ml-2 text-sm text-slate-600">I agree to the <a href="#" className="text-indigo-600 hover:text-indigo-800">Terms of Service</a> and <a href="#" className="text-indigo-600 hover:text-indigo-800">Privacy Policy</a></span>
+                  </label>
+                )}
+                
+                <button
+                  type="submit"
+                  className="w-full bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 font-semibold"
+                >
+                  {isLogin ? 'Login to Account' : 'Create Account'}
+                </button>
+              </form>
+              
+              <div className="mt-6">
+                <div className="relative flex items-center">
+                  <div className="flex-grow border-t border-slate-200"></div>
+                  
+                  <div className="flex-grow border-t border-slate-200"></div>
+                </div>
+                
+                <div className="mt-4 text-center">
+                  
+                  
+                </div>
+              </div>
+              
+              <div className="mt-4 text-center">
+                <p className="text-sm text-slate-600">
+                  {isLogin ? "Don't have an account? " : "Already have an account? "}
+                  <button 
+                    type="button"
+                    onClick={() => {
+                      setIsLogin(!isLogin);
+                      setLoginError('');
+                    }}
+                    className="text-indigo-600 hover:text-indigo-800 font-medium"
+                  >
+                    {isLogin ? 'Sign up' : 'Login'}
+                  </button>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-indigo-50 via-white to-cyan-50 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -61,7 +286,7 @@ const LandingPage = () => {
               <h1 className="text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-tight">
                 India's First 
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600"> AI-Powered</span>
-                <br />E-commerce Operating System
+                <br />Triple Stack Platform
               </h1>
               <p className="text-xl text-slate-600 mb-8 leading-relaxed">
                 Unified platform for Indian SMEs and student entrepreneurs. 
@@ -80,12 +305,12 @@ const LandingPage = () => {
               </div>
               
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link 
-                  to="/dashboard" 
+                <button 
+                  onClick={() => setShowAuthModal(true)}
                   className="bg-indigo-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-indigo-700 transition-colors text-center"
                 >
                   Start Free Trial
-                </Link>
+                </button>
                 <button className="border-2 border-indigo-600 text-indigo-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-indigo-50 transition-colors">
                   Book Demo
                 </button>
@@ -126,90 +351,108 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
-{/* Solutions Section */}
-<section className="py-20 bg-gradient-to-r from-indigo-600 to-purple-600">
-  <div className="max-w-7xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-    {/* Heading */}
-    <h2 className="text-4xl font-bold text-white mb-6">
-      Smart Solutions for MSMEs
-    </h2>
-    <p className="text-xl text-indigo-100 mb-12">
-      AI-powered platforms to manage business, empower developers, and connect skilled workers.
-    </p>
 
-    {/* Cards */}
-    <div className="grid md:grid-cols-3 gap-8 text-left">
-      {/* MSME Business Hub */}
-      <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition">
-        <h3 className="text-xl font-bold text-slate-900 mb-2">
-          MSME Business Hub
-        </h3>
-        <p className="text-sm text-slate-600 mb-4">
-          Complete business management solution with GST compliance,
-          analytics, and employment matching.
-        </p>
-        <ul className="space-y-2 text-sm text-slate-700 mb-4">
-          <li>✅ GST Automation (10.22hrs → 2hrs)</li>
-          <li>✅ AI Analytics Dashboard</li>
-          <li>✅ E-commerce Integration</li>
-          <li>✅ Employment Matching</li>
-        </ul>
-        <div className="bg-indigo-600 text-white font-semibold rounded-lg px-4 py-2 text-center mb-4">
-          80% Time Saved in GST compliance
-        </div>
-        <button className="w-full bg-indigo-600 text-white rounded-lg px-4 py-2 hover:bg-indigo-700 transition">
-          Create Account
-        </button>
-      </div>
+      {/* Solutions Section */}
+      <section className="py-20 bg-gradient-to-r from-indigo-600 to-purple-600">
+        <div className="max-w-7xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+          {/* Heading */}
+          <h2 className="text-4xl font-bold text-white mb-6">
+            Smart Solutions for MSMEs
+          </h2>
+          <p className="text-xl text-indigo-100 mb-12">
+            AI-powered platforms to manage business, empower developers, and connect skilled workers.
+          </p>
 
-      {/* Developer Platform */}
-      <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition">
-        <h3 className="text-xl font-bold text-slate-900 mb-2">
-          Developer Platform
-        </h3>
-        <p className="text-sm text-slate-600 mb-4">
-          Build on SmartMerchant ecosystem with APIs, marketplace
-          opportunities, and revenue sharing.
-        </p>
-        <ul className="space-y-2 text-sm text-slate-700 mb-4">
-          <li>✅ Complete API Documentation</li>
-          <li>✅ Sandbox Environment</li>
-          <li>✅ Theme Marketplace</li>
-          <li>✅ Revenue Sharing</li>
-        </ul>
-        <div className="bg-orange-500 text-white font-semibold rounded-lg px-4 py-2 text-center mb-4">
-          50+ API Endpoints ready to use
-        </div>
-        <button className="w-full bg-indigo-600 text-white rounded-lg px-4 py-2 hover:bg-indigo-700 transition">
-          Create Account
-        </button>
-      </div>
+          {/* Cards */}
+          <div className="grid md:grid-cols-3 gap-8 text-left">
+            {/* MSME Business Hub */}
+            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition">
+              <h3 className="text-xl font-bold text-slate-900 mb-2">
+                MSME Business Hub
+              </h3>
+              <p className="text-sm text-slate-600 mb-4">
+                Complete business management solution with GST compliance,
+                analytics, and employment matching.
+              </p>
+              <ul className="space-y-2 text-sm text-slate-700 mb-4">
+                <li>✅ GST Automation (10.22hrs → 2hrs)</li>
+                <li>✅ AI Analytics Dashboard</li>
+                <li>✅ E-commerce Integration</li>
+                <li>✅ Employment Matching</li>
+              </ul>
+              <div className=" text-black font-semibold rounded-lg px-4 py-2 text-center mb-4">
+                80% Time Saved in GST compliance
+              </div>
+              <button 
+                onClick={() => setShowAuthModal(true)}
+                className="w-full bg-indigo-600 text-white rounded-lg px-4 py-2 hover:bg-indigo-700 transition"
+              >
+                Create Account
+              </button>
+            </div>
 
-      {/* PMKVY Workers Portal */}
-      <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition">
-        <h3 className="text-xl font-bold text-slate-900 mb-2">
-          PMKVY Workers Portal
-        </h3>
-        <p className="text-sm text-slate-600 mb-4">
-          Smart job matching from 24.3 lakh workers with career progression
-          and skill development.
-        </p>
-        <ul className="space-y-2 text-sm text-slate-700 mb-4">
-          <li>✅ AI Job Matching</li>
-          <li>✅ 24.3L Worker Database</li>
-          <li>✅ Skill Development</li>
-          <li>✅ Career Progression</li>
-        </ul>
-        <div className="bg-green-600 text-white font-semibold rounded-lg px-4 py-2 text-center mb-4">
-          89% Success Rate job placements
+            {/* Developer Platform */}
+            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition">
+              <h3 className="text-xl font-bold text-slate-900 mb-2">
+              Developer Platform
+              </h3>
+              <p className="text-sm text-slate-600 mb-4">
+              Build on SmartMerchant ecosystem with APIs, marketplace
+              opportunities, and revenue sharing.
+              </p>
+              <ul className="space-y-2 text-sm text-slate-700 mb-4">
+              <li>✅ Complete API Documentation</li>
+              <li>✅ Sandbox Environment</li>
+              <li>✅ Theme Marketplace</li>
+              <li>✅ Revenue Sharing</li>
+              </ul>
+              <div className=" text-black font-semibold rounded-lg px-4 py-2 text-center mb-4">
+              50+ API Endpoints ready to use
+              </div>
+              <button 
+              onClick={() => {
+                setShowAuthModal(true);
+                setIsLogin(true);
+                navigate('/developer-portal');
+              }}
+              className="w-full bg-indigo-600 text-white rounded-lg px-4 py-2 hover:bg-indigo-700 transition"
+              >
+              Create Account
+              </button>
+            </div>
+
+            {/* PMKVY Workers Portal */}
+            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition">
+              <h3 className="text-xl font-bold text-slate-900 mb-2">
+                PMKVY Workers Portal
+              </h3>
+              <p className="text-sm text-slate-600 mb-4">
+                Smart job matching from 24.3 lakh workers with career progression
+                and skill development.
+              </p>
+              <ul className="space-y-2 text-sm text-slate-700 mb-4">
+                <li>✅ AI Job Matching</li>
+                <li>✅ 24.3L Worker Database</li>
+                <li>✅ Skill Development</li>
+                <li>✅ Career Progression</li>
+              </ul>
+              <div className=" text-black font-semibold rounded-lg px-4 py-2 text-center mb-4">
+                89% Success Rate job placements
+              </div>
+              <button 
+                onClick={() => {
+                setShowAuthModal(true);
+                setIsLogin(true);
+                navigate('/pmkvy-portal');
+              }}
+                className="w-full bg-indigo-600 text-white rounded-lg px-4 py-2 hover:bg-indigo-700 transition"
+              >
+                Create Account
+              </button>
+            </div>
+          </div>
         </div>
-        <button className="w-full bg-indigo-600 text-white rounded-lg px-4 py-2 hover:bg-indigo-700 transition">
-          Create Account
-        </button>
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
 
       {/* Features Section */}
       <section id="features" className="py-20 bg-slate-50">
@@ -258,11 +501,13 @@ const LandingPage = () => {
                 <div className="text-3xl font-bold text-slate-900 mb-2">₹50,000</div>
                 <div className="text-slate-600 mb-4">Traditional Setup Cost</div>
                 <div className="space-y-2 text-sm text-slate-600">
-                  <div>Shopify: ₹2,000/month</div>
-                  <div>Razorpay: 2.5% fees</div>
-                  <div>Shiprocket: ₹40/shipment</div>
-                  <div>Accountant: ₹8,000/month</div>
-                  <div>WhatsApp API: ₹5,000/month</div>
+                  <div>Shopify: ₹2,350 to 17,550/month (Basic Plan)</div>
+                  <div>Razorpay: 2% + 18% GST = ~2.36% per transaction</div>
+                  <div>Shiprocket: from ₹75/shipment (500g, basic plan, +GST)</div>
+                  <div>Accountant: ~₹8,000/month (varies by city & firm)</div>
+                  <div>WhatsApp API: 1700/month +charges</div>
+<div>Dukaan: from ₹375/month (Basic Plan, )no features</div>
+
                 </div>
               </div>
               
@@ -285,7 +530,7 @@ const LandingPage = () => {
                 </div>
               </div>
             </div>
-          </div>
+            </div>
         </div>
       </section>
 
@@ -300,12 +545,12 @@ const LandingPage = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
-              to="/dashboard" 
+            <button 
+              onClick={() => setShowAuthModal(true)}
               className="bg-white text-indigo-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-50 transition-colors"
             >
               Start Your Free Trial
-            </Link>
+            </button>
             <Link 
               to="/pricing" 
               className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-indigo-600 transition-colors"

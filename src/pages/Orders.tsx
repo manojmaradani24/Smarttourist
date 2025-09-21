@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-              
+import Header from '../components/Header';
+import Sidebar from '../components/Sidebar';
 // Define types for our data
 interface Order {
   id: number;
@@ -152,7 +153,12 @@ const Orders: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="flex h-screen bg-slate-50">
+      <Sidebar />
+      
+      <div className="flex-1 flex flex-col overflow-hidden">
+        <Header isDashboard={true} />
+        <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900">Orders Management</h1>
@@ -457,6 +463,8 @@ const Orders: React.FC = () => {
             </div>
           </div>
         )}
+          </div>
+        </div>
       </div>
     </div>
   );

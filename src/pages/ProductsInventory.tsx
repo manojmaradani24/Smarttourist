@@ -150,6 +150,11 @@ const ProductsInventory: React.FC = () => {
   };
 
   return (
+     <div className="flex h-screen bg-slate-50">
+      <Sidebar />
+      
+      <div className="flex-1 flex flex-col overflow-hidden">
+        <Header isDashboard={true} />
     <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
@@ -437,6 +442,8 @@ const ProductsInventory: React.FC = () => {
             </div>
           </div>
         )}
+      </div>
+    </div>
       </div>
     </div>
   );

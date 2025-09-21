@@ -13,7 +13,10 @@ import Accounting from './pages/Accounting';
 import SupportServices from './pages/SupportServices';
 import ProductsInventory from './pages/ProductsInventory';
 import Orders from './pages/Orders';
-import Customer from './pages/customer'; // ✅ Add this import
+import Customer from './pages/customer';
+import DeveloperPortal from './pages/DeveloperPortal'; // ✅ Developer Portal
+import ShiprocketDashboard from './pages/ShiprocketDashboard'; // ✅ Shiprocket Dashboard
+import PMKVYPortal from './pages/PMKVYPortal';
 
 function App() {
   return (
@@ -31,7 +34,10 @@ function App() {
         <Route path="/support" element={<SupportServices />} />
         <Route path="/products" element={<ProductsInventory />} />
         <Route path="/orders" element={<Orders />} />
-        <Route path="/customers" element={<Customer />} /> {/* ✅ Add this route */}
+        <Route path="/customers" element={<Customer />} />
+        <Route path="/developer-portal" element={<DeveloperPortal />} /> {/* ✅ Developer Portal route */}
+        <Route path="/shiprocket" element={<ShiprocketDashboard />} /> {/* ✅ Shiprocket route */}
+        <Route path="/pmkvy-portal" element={<PMKVYPortal />} />
       </Routes>
     </div>
   );

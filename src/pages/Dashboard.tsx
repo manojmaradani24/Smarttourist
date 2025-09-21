@@ -8,48 +8,18 @@ import {
   AlertTriangle, 
   CheckCircle, 
   Clock,
-  IndianRupee,
-  Package,
-  Truck
+  IndianRupee
 } from 'lucide-react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, BarChart, Bar, PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 
 const Dashboard = () => {
   const kpiData = [
-    {
-      title: 'Monthly Revenue',
-      value: '₹2,45,680',
-      change: '+45%',
-      trend: 'up',
-      icon: IndianRupee,
-      color: 'green'
-    },
-    {
-      title: 'Total Orders',
-      value: '1,247',
-      change: '+23%',
-      trend: 'up',
-      icon: ShoppingCart,
-      color: 'blue'
-    },
-    {
-      title: 'Conversion Rate',
-      value: '3.2%',
-      change: '+0.8%',
-      trend: 'up',
-      icon: TrendingUp,
-      color: 'indigo'
-    },
-    {
-      title: 'Manufacturing Jobs',
-      value: '847',
-      change: '+156',
-      trend: 'up',
-      icon: Factory,
-      color: 'purple'
-    }
+    { title: 'Monthly Revenue', value: '₹2,45,680', change: '+45%', trend: 'up', icon: IndianRupee, color: 'green' },
+    { title: 'Total Orders', value: '1,247', change: '+23%', trend: 'up', icon: ShoppingCart, color: 'blue' },
+    { title: 'Conversion Rate', value: '3.2%', change: '+0.8%', trend: 'up', icon: TrendingUp, color: 'indigo' },
+    { title: 'Manufacturing Jobs', value: '847', change: '+156', trend: 'up', icon: Factory, color: 'purple' }
   ];
 
   const revenueData = [
@@ -62,7 +32,7 @@ const Dashboard = () => {
   ];
 
   const platformData = [
-    { name: 'Shopify', orders: 45, color: '#96f2d7' },
+    { name: 'Facebook', orders: 45, color: '#96f2d7' },
     { name: 'Amazon', orders: 38, color: '#ffd43b' },
     { name: 'Flipkart', orders: 32, color: '#74c0fc' },
     { name: 'Website', orders: 28, color: '#ffa8a8' },
@@ -70,54 +40,38 @@ const Dashboard = () => {
   ];
 
   const alerts = [
-    {
-      type: 'warning',
-      message: 'Low inventory alert: Handwoven Sarees (12 left)',
-      time: '2 hours ago'
-    },
-    {
-      type: 'info',
-      message: 'GST return filing due in 3 days',
-      time: '4 hours ago'
-    },
-    {
-      type: 'success',
-      message: 'New manufacturing partner added in Gujarat',
-      time: '1 day ago'
-    }
-  ];
-
-  const aiInsights = [
-    'Diwali demand spike predicted for handicrafts category (+150% in next 2 weeks)',
-    'Shipping cost optimization available: Switch to new logistics partner (Save ₹8/order)',
-    'Customer retention opportunity: 247 customers haven\'t ordered in 30 days',
-    'Inventory restocking recommended: Festive collection items selling 3x faster'
+    { type: 'warning', message: 'Low inventory alert: Handwoven Sarees (12 left)', time: '2 hours ago' },
+    { type: 'info', message: 'GST return filing due in 3 days', time: '4 hours ago' },
+    { type: 'success', message: 'New manufacturing partner added in Gujarat', time: '1 day ago' }
   ];
 
   const quickActions = [
-    { title: 'Create Automation', description: 'Set up new workflow', color: 'indigo' },
-    { title: 'Generate GST Report', description: 'Monthly compliance', color: 'green' },
-    { title: 'Find Manufacturer', description: 'New product sourcing', color: 'purple' },
-    { title: 'Bulk Order Update', description: 'Update order status', color: 'blue' }
+    { title: 'Create Automation', description: 'Set up new workflow', bgColor: '#eef2ff', borderColor: '#c7d2fe', hoverBgColor: '#e0e7ff' },
+    { title: 'Generate GST Report', description: 'Monthly compliance', bgColor: '#dcfce7', borderColor: '#bbf7d0', hoverBgColor: '#bbf7d0' },
+    { title: 'Find Manufacturer', description: 'New product sourcing', bgColor: '#f5e0ff', borderColor: '#ddd6fe', hoverBgColor: '#ede9fe' },
+    { title: 'Bulk Order Update', description: 'Update order status', bgColor: '#e0f2fe', borderColor: '#bae6fd', hoverBgColor: '#bae6fd' }
+  ];
+
+  const aiInsights = [
+    { text: 'Diwali demand spike predicted for handicrafts category (+150% in next 2 weeks)', bgColor: '#eef2ff', borderColor: '#c7d2fe', hoverBgColor: '#e0e7ff' },
+    { text: 'Shipping cost optimization available: Switch to new logistics partner (Save ₹8/order)', bgColor: '#dcfce7', borderColor: '#bbf7d0', hoverBgColor: '#bbf7d0' },
+    { text: 'Customer retention opportunity: 247 customers haven\'t ordered in 30 days', bgColor: '#f5e0ff', borderColor: '#ddd6fe', hoverBgColor: '#ede9fe' },
+    { text: 'Inventory restocking recommended: Festive collection items selling 3x faster', bgColor: '#e0f2fe', borderColor: '#bae6fd', hoverBgColor: '#bae6fd' }
   ];
 
   return (
     <div className="flex h-screen bg-slate-50">
       <Sidebar />
-      
       <div className="flex-1 flex flex-col overflow-hidden">
         <Header isDashboard={true} />
-        
+
         <main className="flex-1 overflow-y-auto p-6">
           <div className="max-w-7xl mx-auto">
             {/* Header */}
             <div className="mb-8">
-              <h1 className="text-3xl font-bold text-slate-900 mb-2">
-                Good morning, Rahul! 🌅
-              </h1>
+              <h1 className="text-3xl font-bold text-slate-900 mb-2">Good morning, entrepreneur!</h1>
               <p className="text-slate-600">
-                Your business has created <span className="font-semibold text-indigo-600">847 manufacturing jobs</span> this month. 
-                Here's your performance overview:
+                Your business has created <span className="font-semibold text-indigo-600">847 manufacturing jobs</span> this month. Here's your performance overview:
               </p>
             </div>
 
@@ -137,9 +91,7 @@ const Dashboard = () => {
                       <div className={`w-12 h-12 rounded-lg bg-${kpi.color}-100 flex items-center justify-center`}>
                         <Icon className={`h-6 w-6 text-${kpi.color}-600`} />
                       </div>
-                      <div className={`text-${kpi.color}-600 text-sm font-medium bg-${kpi.color}-50 px-2 py-1 rounded-full`}>
-                        {kpi.change}
-                      </div>
+                      <div className={`text-${kpi.color}-600 text-sm font-medium bg-${kpi.color}-50 px-2 py-1 rounded-full`}>{kpi.change}</div>
                     </div>
                     <div className="text-2xl font-bold text-slate-900 mb-1">{kpi.value}</div>
                     <div className="text-slate-600 text-sm">{kpi.title}</div>
@@ -190,16 +142,12 @@ const Dashboard = () => {
                         <Cell key={`cell-${index}`} fill={entry.color} />
                       ))}
                     </Pie>
-                    <Tooltip formatter={(value) => [value, 'Orders']} />
                   </PieChart>
                 </ResponsiveContainer>
                 <div className="flex flex-wrap gap-4 mt-4">
                   {platformData.map((platform, index) => (
                     <div key={index} className="flex items-center">
-                      <div 
-                        className="w-3 h-3 rounded-full mr-2" 
-                        style={{ backgroundColor: platform.color }}
-                      ></div>
+                      <div className="w-3 h-3 rounded-full mr-2" style={{ backgroundColor: platform.color }}></div>
                       <span className="text-sm text-slate-600">{platform.name}: {platform.orders}</span>
                     </div>
                   ))}
@@ -214,19 +162,10 @@ const Dashboard = () => {
                 <h2 className="text-xl font-semibold text-slate-900 mb-6">Real-time Alerts</h2>
                 <div className="space-y-4">
                   {alerts.map((alert, index) => {
-                    const iconMap = {
-                      warning: AlertTriangle,
-                      success: CheckCircle,
-                      info: Clock
-                    };
+                    const iconMap = { warning: AlertTriangle, success: CheckCircle, info: Clock };
                     const Icon = iconMap[alert.type];
-                    const colorMap = {
-                      warning: 'amber',
-                      success: 'green',
-                      info: 'blue'
-                    };
+                    const colorMap = { warning: 'amber', success: 'green', info: 'blue' };
                     const color = colorMap[alert.type];
-                    
                     return (
                       <div key={index} className="flex items-start space-x-3">
                         <div className={`w-8 h-8 rounded-full bg-${color}-100 flex items-center justify-center flex-shrink-0`}>
@@ -245,10 +184,16 @@ const Dashboard = () => {
               {/* AI Insights */}
               <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
                 <h2 className="text-xl font-semibold text-slate-900 mb-6">AI Insights</h2>
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {aiInsights.map((insight, index) => (
-                    <div key={index} className="p-4 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg border border-indigo-100">
-                      <p className="text-sm text-slate-800">{insight}</p>
+                    <div
+                      key={index}
+                      className="w-full p-4 rounded-lg border transition-colors cursor-pointer"
+                      style={{ backgroundColor: insight.bgColor, borderColor: insight.borderColor }}
+                      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = insight.hoverBgColor)}
+                      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = insight.bgColor)}
+                    >
+                      <div className="text-sm text-slate-800">{insight.text}</div>
                     </div>
                   ))}
                 </div>
@@ -259,16 +204,20 @@ const Dashboard = () => {
                 <h2 className="text-xl font-semibold text-slate-900 mb-6">Quick Actions</h2>
                 <div className="space-y-3">
                   {quickActions.map((action, index) => (
-                    <button
+                    <div
                       key={index}
-                      className={`w-full p-4 text-left rounded-lg border border-slate-200 hover:bg-${action.color}-50 hover:border-${action.color}-200 transition-colors`}
+                      className="w-full p-4 rounded-lg border transition-colors cursor-pointer"
+                      style={{ backgroundColor: action.bgColor, borderColor: action.borderColor }}
+                      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = action.hoverBgColor)}
+                      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = action.bgColor)}
                     >
                       <div className="font-medium text-slate-900 text-sm mb-1">{action.title}</div>
                       <div className="text-xs text-slate-600">{action.description}</div>
-                    </button>
+                    </div>
                   ))}
                 </div>
               </div>
+
             </div>
           </div>
         </main>
@@ -278,3 +227,4 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+  
