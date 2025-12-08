@@ -12,12 +12,14 @@ import {
   Puzzle,
   Globe,
   Users,
-  Code,   // ✅ Developer Portal
-  Truck,  // ✅ Shiprocket
+  Code,
+  Truck,
   LucideIcon,
+  Store,
+  Laptop,
+  Wrench,
 } from "lucide-react";
 
-// Type for menu items
 interface MenuItem {
   icon: LucideIcon;
   label: string;
@@ -32,20 +34,18 @@ const Sidebar: React.FC = () => {
     { icon: ShoppingCart, label: "Orders", path: "/orders" },
     { icon: Package, label: "Products & Inventory", path: "/products" },
     { icon: Users, label: "Customers", path: "/customers" },
-    { icon: Globe, label: "Website Builder", path: "/website-builder" },
-    { icon: Zap, label: "Automation Playbooks", path: "/automation" },
+    { icon: BarChart3, label: "Analytics", path: "/analytics" },
+    { icon: Calculator, label: "Accounting", path: "/accounting" },
+    { icon: Store, label: "Store Builder", path: "/store-builder" },
+    { icon: Laptop, label: "profile", path: "/website-builder" },
     { icon: Factory, label: "Manufacturing Hub", path: "/manufacturing" },
-    { icon: BarChart3, label: "Analytics & Insights", path: "/analytics" },
     { icon: Puzzle, label: "Integrations", path: "/integrations" },
-    { icon: Calculator, label: "Accounting & GST", path: "/accounting" },
-    { icon: Truck, label: "Logistics", path: "/shiprocket" },
-    { icon: HelpCircle, label: "Support & Services", path: "/support" }, 
-    
+    { icon: Zap, label: "Payments", path: "/automation" },
+    { icon: HelpCircle, label: "Support Services", path: "/support" },
   ];
 
   return (
     <aside className="w-64 bg-[#0A1A2F] text-white h-screen">
-
       <nav className="p-4 space-y-1">
         {menuItems.map((item, index) => {
           const Icon = item.icon;

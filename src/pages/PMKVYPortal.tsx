@@ -1,4 +1,4 @@
-// File: src/pages/PMKVYPortal.tsx
+
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/Card';
@@ -31,104 +31,104 @@ import {
   ChevronDown
 } from 'lucide-react';
 
-const PMKVYPortal = () => {
+const LocalExperiencePortal = () => {
   const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
-  const [activeTab, setActiveTab] = useState('jobs');
+  const [activeTab, setActiveTab] = useState('experiences');
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
-  const jobListings = [
+  const experienceListings = [
     {
       id: 1,
-      title: "Accountant",
-      company: "Corporate Finance Dept",
-      type: "Full-time",
-      location: "Mumbai",
+      title: "Cultural Heritage Guide",
+      company: "Heritage Tours India",
+      type: "Part-time",
+      location: "Delhi",
       salary: "₹25,000 - ₹35,000",
-      skills: ["Accounting", "Tally", "GST"],
+      skills: ["History", "Communication", "Tour Guiding"],
       match: 92,
       posted: "2 days ago",
       applicants: 24,
-      description: "We are looking for a skilled accountant with experience in GST filing and financial management.",
-      requirements: ["2+ years experience", "Tally certification", "GST knowledge"]
+      description: "Share the rich cultural heritage of Delhi with international and domestic tourists.",
+      requirements: ["2+ years guiding experience", "History knowledge", "Multilingual skills"]
     },
     {
       id: 2,
-      title: "Manufacturing Supervisor",
-      company: "Industrial Products Ltd",
+      title: "Adventure Tour Leader",
+      company: "Himalayan Expeditions",
       type: "Full-time",
-      location: "Pune",
+      location: "Himachal Pradesh",
       salary: "₹20,000 - ₹30,000",
-      skills: ["Production", "Quality Control", "Supervision"],
+      skills: ["Trekking", "First Aid", "Leadership"],
       match: 88,
       posted: "1 week ago",
       applicants: 18,
-      description: "Supervise manufacturing operations and ensure quality standards are met.",
-      requirements: ["3+ years supervisory experience", "Quality control certification", "Technical degree"]
+      description: "Lead adventure tours and ensure safety while providing memorable experiences.",
+      requirements: ["3+ years trekking experience", "First aid certification", "Leadership skills"]
     },
     {
       id: 3,
-      title: "Commercial Driver",
-      company: "Logistics Solutions",
-      type: "Full-time",
-      location: "Delhi",
+      title: "Culinary Experience Host",
+      company: "Taste of India",
+      type: "Flexible",
+      location: "Mumbai",
       salary: "₹18,000 - ₹25,000",
-      skills: ["Driving License", "Logistics", "Transport"],
+      skills: ["Cooking", "Hospitality", "Local Cuisine"],
       match: 95,
       posted: "3 days ago",
       applicants: 32,
-      description: "Transport goods safely and efficiently across designated routes.",
-      requirements: ["Valid commercial license", "3+ years driving experience", "Clean driving record"]
+      description: "Host cooking classes and food tours showcasing authentic Indian cuisine.",
+      requirements: ["Culinary expertise", "Hospitality experience", "English proficiency"]
     },
     {
       id: 4,
-      title: "Electrician",
-      company: "Power Solutions Inc",
+      title: "Wildlife Safari Guide",
+      company: "Jungle Adventures",
       type: "Full-time",
-      location: "Bangalore",
+      location: "Madhya Pradesh",
       salary: "₹22,000 - ₹32,000",
-      skills: ["Electrical Wiring", "Maintenance", "Safety Protocols"],
+      skills: ["Wildlife Knowledge", "Safety Protocols", "Photography"],
       match: 90,
       posted: "5 days ago",
       applicants: 15,
-      description: "Install, maintain, and repair electrical wiring, equipment, and fixtures.",
-      requirements: ["ITI Electrician certification", "3+ years experience", "Knowledge of safety standards"]
+      description: "Guide wildlife safaris and educate visitors about local flora and fauna.",
+      requirements: ["Wildlife certification", "3+ years experience", "Safety training"]
     },
     {
       id: 5,
-      title: "Welder",
-      company: "Metal Works Ltd",
-      type: "Full-time",
-      location: "Chennai",
+      title: "Yoga & Wellness Instructor",
+      company: "Spiritual Retreats",
+      type: "Part-time",
+      location: "Rishikesh",
       salary: "₹20,000 - ₹28,000",
-      skills: ["Arc Welding", "MIG Welding", "Metal Fabrication"],
+      skills: ["Yoga Instruction", "Meditation", "Wellness"],
       match: 87,
       posted: "1 day ago",
       applicants: 12,
-      description: "Fabricate and assemble metal structures and equipment through welding.",
-      requirements: ["ITI Welder certification", "2+ years experience", "Knowledge of different welding techniques"]
+      description: "Conduct yoga sessions and wellness programs for international visitors.",
+      requirements: ["Yoga certification", "2+ years experience", "English speaking"]
     }
   ];
 
   const skillOptions = [
-    "Plumbing",
-    "Electrical",
-    "Welding",
-    "Carpentry",
-    "Driving License",
-    "CNC Operation",
-    "Quality Control",
-    "Forklift Operation",
-    "Masonry",
-    "Painting",
-    "HVAC",
-    "Machine Operation"
+    "Tour Guiding",
+    "Cooking",
+    "Photography",
+    "First Aid",
+    "Multilingual",
+    "History Knowledge",
+    "Wildlife Expertise",
+    "Adventure Sports",
+    "Yoga Instruction",
+    "Hospitality",
+    "Local Culture",
+    "Storytelling"
   ];
 
   const courses = [
     {
       id: 1,
-      title: "Advanced Welding Techniques",
-      provider: "NSDC Skill University",
+      title: "Advanced Tour Guiding Techniques",
+      provider: "Tourism Skill University",
       duration: "6 weeks",
       level: "Advanced",
       rating: 4.8,
@@ -138,8 +138,8 @@ const PMKVYPortal = () => {
     },
     {
       id: 2,
-      title: "GST Accounting Practices",
-      provider: "Finance Skill Council",
+      title: "Cultural Heritage Interpretation",
+      provider: "Heritage Skill Council",
       duration: "8 weeks",
       level: "Intermediate",
       rating: 4.6,
@@ -149,8 +149,8 @@ const PMKVYPortal = () => {
     },
     {
       id: 3,
-      title: "Industrial Safety Standards",
-      provider: "Safety Training Institute",
+      title: "Adventure Tourism Safety",
+      provider: "Adventure Training Institute",
       duration: "4 weeks",
       level: "Beginner",
       rating: 4.7,
@@ -163,8 +163,8 @@ const PMKVYPortal = () => {
   const applications = [
     {
       id: 1,
-      title: "Manufacturing Supervisor",
-      company: "Industrial Products Ltd",
+      title: "Adventure Tour Leader",
+      company: "Himalayan Expeditions",
       status: "Under Review",
       date: "2023-06-15",
       statusColor: "text-yellow-600",
@@ -172,8 +172,8 @@ const PMKVYPortal = () => {
     },
     {
       id: 2,
-      title: "Commercial Driver",
-      company: "Logistics Solutions",
+      title: "Culinary Experience Host",
+      company: "Taste of India",
       status: "Approved",
       date: "2023-06-10",
       statusColor: "text-green-600",
@@ -181,8 +181,8 @@ const PMKVYPortal = () => {
     },
     {
       id: 3,
-      title: "Electrician",
-      company: "Power Solutions Inc",
+      title: "Wildlife Safari Guide",
+      company: "Jungle Adventures",
       status: "Rejected",
       date: "2023-06-05",
       statusColor: "text-red-600",
@@ -205,9 +205,9 @@ const PMKVYPortal = () => {
         <div className="p-4 border-b border-gray-800">
           <h1 className="text-xl font-bold flex items-center">
             <Award className="mr-2" />
-            PMKVY Portal
+            Local Experience Portal
           </h1>
-          <p className="text-gray-400 text-sm mt-1">Skilled Workers Platform</p>
+          <p className="text-gray-400 text-sm mt-1">Authentic Travel Experiences Platform</p>
         </div>
         
         <nav className="flex-1 p-4 overflow-y-auto">
@@ -223,11 +223,11 @@ const PMKVYPortal = () => {
             </li>
             <li>
               <button 
-                className={`w-full flex items-center px-3 py-2 rounded-lg text-left ${activeTab === 'jobs' ? 'bg-blue-800 text-white' : 'text-gray-300 hover:bg-gray-800'}`}
-                onClick={() => setActiveTab('jobs')}
+                className={`w-full flex items-center px-3 py-2 rounded-lg text-left ${activeTab === 'experiences' ? 'bg-blue-800 text-white' : 'text-gray-300 hover:bg-gray-800'}`}
+                onClick={() => setActiveTab('experiences')}
               >
                 <Briefcase className="h-5 w-5 mr-3" />
-                Job Matches
+                Experience Opportunities
               </button>
             </li>
             <li>
@@ -265,7 +265,7 @@ const PMKVYPortal = () => {
               <li>
                 <a href="#" className="flex items-center text-gray-300 hover:text-white">
                   <Shield className="h-4 w-4 mr-3" />
-                  Resume Builder
+                  Profile Builder
                 </a>
               </li>
               <li>
@@ -290,8 +290,8 @@ const PMKVYPortal = () => {
               <User className="h-5 w-5" />
             </div>
             <div className="ml-3">
-              <p className="text-sm font-medium">Rajesh Kumar</p>
-              <p className="text-xs text-gray-400">Electrician</p>
+              <p className="text-sm font-medium">Priya Sharma</p>
+              <p className="text-xs text-gray-400">Cultural Guide</p>
             </div>
           </div>
           <button className="w-full flex items-center text-gray-300 hover:text-white text-sm">
@@ -318,7 +318,7 @@ const PMKVYPortal = () => {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
               <input 
                 type="text" 
-                placeholder="Search jobs, courses..." 
+                placeholder="Search experiences, courses..." 
                 className="pl-10 pr-4 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
@@ -331,7 +331,7 @@ const PMKVYPortal = () => {
             </button>
             <div className="flex items-center">
               <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white text-sm">
-                RK
+                PS
               </div>
               <ChevronDown className="h-4 w-4 ml-1 text-gray-500" />
             </div>
@@ -345,20 +345,20 @@ const PMKVYPortal = () => {
             animate={{ opacity: 1, y: 0 }}
             className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-6 shadow-md rounded-lg mb-6"
           >
-            <h1 className="text-2xl font-bold mb-2">PMKVY Workers Portal</h1>
-            <p className="text-blue-100">Smart job matching with 89% success rate and career progression opportunities</p>
+            <h1 className="text-2xl font-bold mb-2">Local Experience Portal</h1>
+            <p className="text-blue-100">Connect travelers with authentic local experiences and cultural immersion</p>
             <div className="flex mt-4 space-x-3">
               <div className="bg-white bg-opacity-20 p-3 rounded-lg">
-                <div className="text-2xl font-bold">24.3L+</div>
-                <div className="text-sm">Skilled Workers</div>
+                <div className="text-2xl font-bold">24.3K+</div>
+                <div className="text-sm">Local Guides</div>
               </div>
               <div className="bg-white bg-opacity-20 p-3 rounded-lg">
                 <div className="text-2xl font-bold">89%</div>
-                <div className="text-sm">Placement Rate</div>
+                <div className="text-sm">Satisfaction Rate</div>
               </div>
               <div className="bg-white bg-opacity-20 p-3 rounded-lg">
                 <div className="text-2xl font-bold">15K+</div>
-                <div className="text-sm">Employers</div>
+                <div className="text-sm">Travel Experiences</div>
               </div>
             </div>
           </motion.div>
@@ -367,7 +367,7 @@ const PMKVYPortal = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Main Content - 2 columns */}
             <div className="lg:col-span-2 space-y-6">
-              {/* Application Form Section */}
+              {/* Profile Completion Section */}
               {activeTab === 'dashboard' && (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -378,7 +378,7 @@ const PMKVYPortal = () => {
                     <CardHeader>
                       <CardTitle>Complete Your Profile</CardTitle>
                       <CardDescription>
-                        Increase your job matches by completing your profile
+                        Increase your experience matches by completing your profile
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-4">
@@ -399,7 +399,7 @@ const PMKVYPortal = () => {
                     <CardHeader>
                       <CardTitle>Skill Verification</CardTitle>
                       <CardDescription>
-                        Get your skills verified to stand out to employers
+                        Get your skills verified to stand out to travel companies
                       </CardDescription>
                     </CardHeader>
                     <CardContent>
@@ -430,63 +430,63 @@ const PMKVYPortal = () => {
                 </motion.div>
               )}
 
-              {/* Job Listings */}
-              {(activeTab === 'jobs' || activeTab === 'dashboard') && (
+              {/* Experience Listings */}
+              {(activeTab === 'experiences' || activeTab === 'dashboard') && (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
                 >
                   <div className="flex justify-between items-center mb-6">
-                    <h2 className="text-2xl font-bold">Recommended Jobs</h2>
+                    <h2 className="text-2xl font-bold">Recommended Experiences</h2>
                     <Button variant="outline" className="flex items-center">
                       <Filter className="h-4 w-4 mr-2" />
                       Filters
                     </Button>
                   </div>
                   <div className="grid gap-4">
-                    {jobListings.map((job, index) => (
+                    {experienceListings.map((experience, index) => (
                       <Card key={index} className="hover:shadow-lg transition-shadow">
                         <CardContent className="p-6">
                           <div className="flex items-start justify-between">
                             <div className="flex-1">
                               <div className="flex items-start justify-between">
-                                <h3 className="text-lg font-semibold mb-2">{job.title}</h3>
+                                <h3 className="text-lg font-semibold mb-2">{experience.title}</h3>
                                 <div className="flex items-center gap-1">
                                   <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                                  <span className="font-bold text-green-600">{job.match}%</span>
+                                  <span className="font-bold text-green-600">{experience.match}%</span>
                                 </div>
                               </div>
-                              <p className="text-gray-600 mb-3">{job.company}</p>
+                              <p className="text-gray-600 mb-3">{experience.company}</p>
                               
                               <div className="flex items-center gap-4 mb-3">
                                 <div className="flex items-center gap-1">
                                   <Briefcase className="w-4 h-4 text-gray-500" />
-                                  <span className="text-sm">{job.type}</span>
+                                  <span className="text-sm">{experience.type}</span>
                                 </div>
                                 <div className="flex items-center gap-1">
                                   <MapPin className="w-4 h-4 text-gray-500" />
-                                  <span className="text-sm">{job.location}</span>
+                                  <span className="text-sm">{experience.location}</span>
                                 </div>
                                 <div className="flex items-center gap-1">
                                   <IndianRupee className="w-4 h-4 text-gray-500" />
-                                  <span className="text-sm">{job.salary}</span>
+                                  <span className="text-sm">{experience.salary}</span>
                                 </div>
                               </div>
 
                               <div className="flex flex-wrap gap-2 mb-3">
-                                {job.skills.map((skill, i) => (
+                                {experience.skills.map((skill, i) => (
                                   <span key={i} className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">
                                     {skill}
                                   </span>
                                 ))}
                               </div>
 
-                              <p className="text-sm text-gray-600 mb-3">{job.description}</p>
+                              <p className="text-sm text-gray-600 mb-3">{experience.description}</p>
                               
                               <div className="flex items-center text-sm text-gray-500">
                                 <Clock className="w-4 h-4 mr-1" />
-                                <span>{job.posted} • {job.applicants} applicants</span>
+                                <span>{experience.posted} • {experience.applicants} applicants</span>
                               </div>
                             </div>
                             
@@ -496,7 +496,7 @@ const PMKVYPortal = () => {
                                 Apply Now
                               </Button>
                               <Button variant="outline" className="text-xs">
-                                Save Job
+                                Save Experience
                               </Button>
                             </div>
                           </div>
@@ -514,7 +514,7 @@ const PMKVYPortal = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
                 >
-                  <h2 className="text-2xl font-bold mb-6">Skill Development Courses</h2>
+                  <h2 className="text-2xl font-bold mb-6">Tourism Skill Development</h2>
                   <div className="grid md:grid-cols-2 gap-4">
                     {courses.map((course, index) => (
                       <Card key={index} className="hover:shadow-lg transition-shadow">
@@ -618,7 +618,7 @@ const PMKVYPortal = () => {
                       <span className="text-sm text-yellow-600">40%</span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-sm">Work Experience</span>
+                      <span className="text-sm">Experience</span>
                       <span className="text-sm text-red-600">20%</span>
                     </div>
                     <Button className="w-full bg-blue-600 hover:bg-blue-700">
@@ -637,10 +637,10 @@ const PMKVYPortal = () => {
                   <div className="space-y-4">
                     <div className="p-3 bg-blue-50 rounded-lg">
                       <div className="flex justify-between items-start mb-2">
-                        <h4 className="font-semibold">Industrial Products Ltd</h4>
+                        <h4 className="font-semibold">Himalayan Expeditions</h4>
                         <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Tomorrow</span>
                       </div>
-                      <p className="text-sm text-gray-600 mb-2">Manufacturing Supervisor</p>
+                      <p className="text-sm text-gray-600 mb-2">Adventure Tour Leader</p>
                       <div className="flex items-center text-sm text-gray-500">
                         <Calendar className="w-4 h-4 mr-1" />
                         <span>10:00 AM • Video Call</span>
@@ -648,13 +648,13 @@ const PMKVYPortal = () => {
                     </div>
                     <div className="p-3 bg-green-50 rounded-lg">
                       <div className="flex justify-between items-start mb-2">
-                        <h4 className="font-semibold">Logistics Solutions</h4>
+                        <h4 className="font-semibold">Taste of India</h4>
                         <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">In 3 days</span>
                       </div>
-                      <p className="text-sm text-gray-600 mb-2">Commercial Driver</p>
+                      <p className="text-sm text-gray-600 mb-2">Culinary Experience Host</p>
                       <div className="flex items-center text-sm text-gray-500">
                         <MapPin className="w-4 h-4 mr-1" />
-                        <span>11:30 AM • Office Visit</span>
+                        <span>11:30 AM • In-person</span>
                       </div>
                     </div>
                   </div>
@@ -669,7 +669,7 @@ const PMKVYPortal = () => {
                 <CardContent>
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm">Jobs Applied</span>
+                      <span className="text-sm">Experiences Applied</span>
                       <span className="font-bold">12</span>
                     </div>
                     <div className="flex items-center justify-between">
@@ -688,18 +688,18 @@ const PMKVYPortal = () => {
                 </CardContent>
               </Card>
 
-              {/* Resume Upload */}
+              {/* Profile Upload */}
               <Card>
                 <CardHeader>
-                  <CardTitle>Your Resume</CardTitle>
+                  <CardTitle>Your Portfolio</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="p-4 border-2 border-dashed border-gray-300 rounded-lg text-center">
                     <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                    <p className="text-sm text-gray-600 mb-2">Upload your resume to apply faster</p>
+                    <p className="text-sm text-gray-600 mb-2">Upload your portfolio to showcase your work</p>
                     <Button className="bg-blue-600 hover:bg-blue-700">
                       <Download className="w-4 h-4 mr-2" />
-                      Upload Resume
+                      Upload Portfolio
                     </Button>
                   </div>
                 </CardContent>
@@ -712,23 +712,23 @@ const PMKVYPortal = () => {
         <footer className="bg-gray-800 text-white p-6 border-t border-gray-700">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-              <h3 className="text-lg font-semibold mb-4">PMKVY Workers Portal</h3>
-              <p className="text-gray-400">Connecting skilled workers with employment opportunities across India.</p>
+              <h3 className="text-lg font-semibold mb-4">Local Experience Portal</h3>
+              <p className="text-gray-400">Connecting local guides with travelers for authentic cultural experiences.</p>
             </div>
             <div>
-              <h4 className="font-semibold mb-3">For Workers</h4>
+              <h4 className="font-semibold mb-3">For Guides</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white">Find Jobs</a></li>
+                <li><a href="#" className="hover:text-white">Find Opportunities</a></li>
                 <li><a href="#" className="hover:text-white">Skill Development</a></li>
                 <li><a href="#" className="hover:text-white">Career Guidance</a></li>
                 <li><a href="#" className="hover:text-white">Certification</a></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-3">For Employers</h4>
+              <h4 className="font-semibold mb-3">For Travel Companies</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white">Post Jobs</a></li>
-                <li><a href="#" className="hover:text-white">Browse Candidates</a></li>
+                <li><a href="#" className="hover:text-white">Post Opportunities</a></li>
+                <li><a href="#" className="hover:text-white">Browse Guides</a></li>
                 <li><a href="#" className="hover:text-white">Skill Verification</a></li>
                 <li><a href="#" className="hover:text-white">Training Programs</a></li>
               </ul>
@@ -744,7 +744,7 @@ const PMKVYPortal = () => {
             </div>
           </div>
           <div className="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
-            <p>© 2023 PMKVY Workers Portal. All rights reserved.</p>
+            <p>© 2023 Local Experience Portal. All rights reserved.</p>
           </div>
         </footer>
       </div>
@@ -752,4 +752,4 @@ const PMKVYPortal = () => {
   );
 };
 
-export default PMKVYPortal;
+export default LocalExperiencePortal;

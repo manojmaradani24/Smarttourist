@@ -4,58 +4,58 @@ import { Check, Plus, Settings, Zap, AlertCircle, ExternalLink, Search } from 'l
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 
-const Integrations = () => {
+const TravelPartners = () => {
   const [activeTab, setActiveTab] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
 
   const categories = [
-    { id: 'all', name: 'All Integrations', count: 24 },
-    { id: 'payments', name: 'Payments', count: 6 },
-    { id: 'logistics', name: 'Logistics', count: 5 },
-    { id: 'marketing', name: 'Marketing', count: 4 },
-    { id: 'accounting', name: 'Accounting', count: 3 },
-    { id: 'analytics', name: 'Analytics', count: 4 },
-    { id: 'marketplace', name: 'Marketplaces', count: 2 }
+    { id: 'all', name: 'All Partners', count: 24 },
+    { id: 'flights', name: 'Flights', count: 6 },
+    { id: 'hotels', name: 'Hotels', count: 5 },
+    { id: 'transport', name: 'Transport', count: 4 },
+    { id: 'activities', name: 'Activities', count: 3 },
+    { id: 'insurance', name: 'Insurance', count: 4 },
+    { id: 'guides', name: 'Local Guides', count: 2 }
   ];
 
-  const integrations = [
+  const partners = [
     {
       id: 1,
-      name: 'Razorpay',
-      category: 'payments',
-      description: 'Accept payments online with India\'s most popular payment gateway',
+      name: 'MakeMyTrip',
+      category: 'flights',
+      description: 'Book flights, hotels, and packages across India and international destinations',
       logo: 'https://images.pexels.com/photos/5632371/pexels-photo-5632371.jpeg?auto=compress&cs=tinysrgb&w=100',
       connected: true,
       popular: true,
-      features: ['Credit/Debit Cards', 'UPI', 'Net Banking', 'Wallets'],
-      pricing: '2% transaction fee',
+      features: ['Flight Booking', 'Hotel Reservations', 'Holiday Packages', '24/7 Support'],
+      pricing: 'Commission based',
       setup_time: '5 minutes',
       rating: 4.8,
       reviews: 15600
     },
     {
       id: 2,
-      name: 'Shiprocket',
-      category: 'logistics',
-      description: 'Ship your products across India with 17+ courier partners',
+      name: 'Uber Travel',
+      category: 'transport',
+      description: 'Seamless airport transfers and local transportation services',
       logo: 'https://images.pexels.com/photos/5632399/pexels-photo-5632399.jpeg?auto=compress&cs=tinysrgb&w=100',
       connected: true,
       popular: true,
-      features: ['Pan-India Delivery', 'Rate Calculator', 'Tracking', 'COD Available'],
-      pricing: '₹35 per shipment',
+      features: ['Airport Transfers', 'City Rides', 'Price Estimates', 'Real-time Tracking'],
+      pricing: 'Distance based',
       setup_time: '10 minutes',
       rating: 4.6,
       reviews: 8900
     },
     {
       id: 3,
-      name: 'Amazon Seller Central',
-      category: 'marketplace',
-      description: 'Sell on Amazon India and reach millions of customers',
+      name: 'Booking.com',
+      category: 'hotels',
+      description: 'Access millions of hotels, resorts, and vacation rentals worldwide',
       logo: 'https://images.pexels.com/photos/5632384/pexels-photo-5632384.jpeg?auto=compress&cs=tinysrgb&w=100',
       connected: false,
       popular: true,
-      features: ['Product Listing', 'Order Management', 'FBA', 'Advertising'],
+      features: ['Hotel Booking', 'Vacation Rentals', 'Free Cancellation', 'Guest Reviews'],
       pricing: 'Commission based',
       setup_time: '30 minutes',
       rating: 4.4,
@@ -63,13 +63,13 @@ const Integrations = () => {
     },
     {
       id: 4,
-      name: 'Flipkart Seller Hub',
-      category: 'marketplace',
-      description: 'Expand your reach with India\'s leading e-commerce platform',
+      name: 'Airbnb Experiences',
+      category: 'activities',
+      description: 'Discover unique local experiences and activities hosted by locals',
       logo: 'https://images.pexels.com/photos/5632402/pexels-photo-5632402.jpeg?auto=compress&cs=tinysrgb&w=100',
       connected: false,
       popular: false,
-      features: ['Bulk Upload', 'Flipkart Plus', 'Advertising', 'Analytics'],
+      features: ['Local Experiences', 'Cooking Classes', 'Walking Tours', 'Cultural Activities'],
       pricing: 'Commission based',
       setup_time: '25 minutes',
       rating: 4.3,
@@ -77,41 +77,41 @@ const Integrations = () => {
     },
     {
       id: 5,
-      name: 'AiSensy WhatsApp',
-      category: 'marketing',
-      description: 'Automate WhatsApp marketing and customer support',
+      name: 'TripAdvisor',
+      category: 'activities',
+      description: 'Access millions of reviews and book tours, activities worldwide',
       logo: 'https://images.pexels.com/photos/7679720/pexels-photo-7679720.jpeg?auto=compress&cs=tinysrgb&w=100',
       connected: true,
       popular: false,
-      features: ['Broadcast Messages', 'Automation', 'Templates', 'Analytics'],
-      pricing: '₹2000/month',
+      features: ['Tour Booking', 'Restaurant Reviews', 'Travel Forums', 'Price Comparison'],
+      pricing: 'Commission based',
       setup_time: '15 minutes',
       rating: 4.7,
       reviews: 3400
     },
     {
       id: 6,
-      name: 'Zoho Books',
-      category: 'accounting',
-      description: 'Manage your accounts, GST, and invoicing seamlessly',
+      name: 'World Nomads',
+      category: 'insurance',
+      description: 'Comprehensive travel insurance for international and domestic trips',
       logo: 'https://images.pexels.com/photos/5632371/pexels-photo-5632371.jpeg?auto=compress&cs=tinysrgb&w=100',
       connected: false,
       popular: false,
-      features: ['GST Compliance', 'Invoicing', 'Expense Tracking', 'Reports'],
-      pricing: '₹1500/month',
+      features: ['Trip Cancellation', 'Medical Coverage', 'Lost Luggage', '24/7 Assistance'],
+      pricing: 'Trip cost based',
       setup_time: '20 minutes',
       rating: 4.5,
       reviews: 7800
     },
     {
       id: 7,
-      name: 'Google Analytics',
-      category: 'analytics',
-      description: 'Track and analyze your website traffic and customer behavior',
+      name: 'Google Travel',
+      category: 'flights',
+      description: 'Smart flight and hotel search with price tracking and recommendations',
       logo: 'https://images.pexels.com/photos/5632384/pexels-photo-5632384.jpeg?auto=compress&cs=tinysrgb&w=100',
       connected: true,
       popular: true,
-      features: ['Traffic Analysis', 'Conversion Tracking', 'Audience Insights', 'Reports'],
+      features: ['Price Tracking', 'Flight Search', 'Hotel Deals', 'Travel Insights'],
       pricing: 'Free',
       setup_time: '10 minutes',
       rating: 4.6,
@@ -119,28 +119,28 @@ const Integrations = () => {
     },
     {
       id: 8,
-      name: 'Facebook Ads',
-      category: 'marketing',
-      description: 'Run targeted ads on Facebook and Instagram',
+      name: 'Viator Tours',
+      category: 'activities',
+      description: 'Book tours, attractions, and experiences in destinations worldwide',
       logo: 'https://images.pexels.com/photos/7679720/pexels-photo-7679720.jpeg?auto=compress&cs=tinysrgb&w=100',
       connected: false,
       popular: true,
-      features: ['Targeted Ads', 'Pixel Tracking', 'Catalog Sync', 'ROI Tracking'],
-      pricing: 'Ad spend based',
+      features: ['Sightseeing Tours', 'Adventure Activities', 'Skip-the-Line', 'Local Guides'],
+      pricing: 'Activity based',
       setup_time: '15 minutes',
       rating: 4.2,
       reviews: 23400
     }
   ];
 
-  const filteredIntegrations = integrations.filter(integration => {
-    const matchesCategory = activeTab === 'all' || integration.category === activeTab;
-    const matchesSearch = integration.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         integration.description.toLowerCase().includes(searchTerm.toLowerCase());
+  const filteredPartners = partners.filter(partner => {
+    const matchesCategory = activeTab === 'all' || partner.category === activeTab;
+    const matchesSearch = partner.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         partner.description.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
-  const connectedCount = integrations.filter(i => i.connected).length;
+  const connectedCount = partners.filter(i => i.connected).length;
 
   return (
     <div className="flex h-screen bg-slate-50">
@@ -151,31 +151,29 @@ const Integrations = () => {
         
         <main className="flex-1 overflow-y-auto p-6">
           <div className="max-w-7xl mx-auto">
-            {/* Header */}
             <div className="mb-8">
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <h1 className="text-3xl font-bold text-slate-900 mb-2">Integrations</h1>
+                  <h1 className="text-3xl font-bold text-slate-900 mb-2">Travel Partners</h1>
                   <p className="text-slate-600">
-                    Connect your favorite tools and platforms. You have <span className="font-semibold text-indigo-600">
-                    {connectedCount} integrations</span> active out of 24 available.
+                    Connect your favorite travel services and platforms. You have <span className="font-semibold text-indigo-600">
+                    {connectedCount} partners</span> active out of 24 available.
                   </p>
                 </div>
                 <button className="bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-colors flex items-center">
                   <Plus className="h-5 w-5 mr-2" />
-                  Request Integration
+                  Request Partner
                 </button>
               </div>
 
-              {/* Stats */}
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
                 <div className="bg-white rounded-lg p-4 shadow-sm border border-slate-200">
                   <div className="text-2xl font-bold text-indigo-600">{connectedCount}</div>
-                  <div className="text-sm text-slate-600">Active Integrations</div>
+                  <div className="text-sm text-slate-600">Active Partners</div>
                 </div>
                 <div className="bg-white rounded-lg p-4 shadow-sm border border-slate-200">
                   <div className="text-2xl font-bold text-green-600">24</div>
-                  <div className="text-sm text-slate-600">Available Integrations</div>
+                  <div className="text-sm text-slate-600">Available Partners</div>
                 </div>
                 <div className="bg-white rounded-lg p-4 shadow-sm border border-slate-200">
                   <div className="text-2xl font-bold text-purple-600">96%</div>
@@ -188,14 +186,13 @@ const Integrations = () => {
               </div>
             </div>
 
-            {/* Search and Filters */}
             <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-200 mb-8">
               <div className="flex flex-col md:flex-row gap-4 mb-6">
                 <div className="flex-1 relative">
                   <Search className="h-5 w-5 text-slate-400 absolute left-3 top-3" />
                   <input
                     type="text"
-                    placeholder="Search integrations..."
+                    placeholder="Search travel partners..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
@@ -209,7 +206,6 @@ const Integrations = () => {
                 </select>
               </div>
 
-              {/* Category Tabs */}
               <div className="flex flex-wrap gap-2">
                 {categories.map((category) => (
                   <button
@@ -227,16 +223,15 @@ const Integrations = () => {
               </div>
             </div>
 
-            {/* Integrations Grid */}
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredIntegrations.map((integration, index) => (
+              {filteredPartners.map((partner, index) => (
                 <motion.div
-                  key={integration.id}
+                  key={partner.id}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className={`bg-white rounded-xl p-6 shadow-sm border-2 transition-all hover:shadow-lg ${
-                    integration.connected 
+                    partner.connected 
                       ? 'border-green-200 bg-green-50/30' 
                       : 'border-slate-200 hover:border-indigo-200'
                   }`}
@@ -244,25 +239,25 @@ const Integrations = () => {
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center">
                       <img
-                        src={integration.logo}
-                        alt={integration.name}
+                        src={partner.logo}
+                        alt={partner.name}
                         className="w-12 h-12 rounded-lg object-cover mr-3"
                       />
                       <div>
                         <div className="flex items-center">
-                          <h3 className="text-lg font-semibold text-slate-900">{integration.name}</h3>
-                          {integration.popular && (
+                          <h3 className="text-lg font-semibold text-slate-900">{partner.name}</h3>
+                          {partner.popular && (
                             <span className="ml-2 bg-amber-100 text-amber-600 text-xs px-2 py-1 rounded-full">
                               Popular
                             </span>
                           )}
                         </div>
-                        <div className="text-sm text-slate-600 capitalize">{integration.category}</div>
+                        <div className="text-sm text-slate-600 capitalize">{partner.category}</div>
                       </div>
                     </div>
                     
                     <div className="flex items-center">
-                      {integration.connected ? (
+                      {partner.connected ? (
                         <div className="flex items-center text-green-600">
                           <Check className="h-5 w-5 mr-1" />
                           <span className="text-sm font-medium">Connected</span>
@@ -273,12 +268,12 @@ const Integrations = () => {
                     </div>
                   </div>
 
-                  <p className="text-slate-700 text-sm mb-4">{integration.description}</p>
+                  <p className="text-slate-700 text-sm mb-4">{partner.description}</p>
 
                   <div className="mb-4">
                     <div className="text-xs font-medium text-slate-600 mb-2">KEY FEATURES</div>
                     <div className="flex flex-wrap gap-1">
-                      {integration.features.map((feature, index) => (
+                      {partner.features.map((feature, index) => (
                         <span
                           key={index}
                           className="bg-slate-100 text-slate-600 text-xs px-2 py-1 rounded-full"
@@ -292,19 +287,19 @@ const Integrations = () => {
                   <div className="grid grid-cols-2 gap-4 mb-4 text-sm">
                     <div>
                       <div className="text-slate-600">Pricing</div>
-                      <div className="font-medium text-slate-900">{integration.pricing}</div>
+                      <div className="font-medium text-slate-900">{partner.pricing}</div>
                     </div>
                     <div>
                       <div className="text-slate-600">Setup Time</div>
-                      <div className="font-medium text-slate-900">{integration.setup_time}</div>
+                      <div className="font-medium text-slate-900">{partner.setup_time}</div>
                     </div>
                   </div>
 
                   <div className="flex items-center justify-between mb-6">
                     <div className="flex items-center">
                       <div className="text-yellow-400 text-sm mr-1">★</div>
-                      <span className="font-medium text-slate-900 text-sm">{integration.rating}</span>
-                      <span className="text-slate-500 text-xs ml-1">({integration.reviews.toLocaleString()})</span>
+                      <span className="font-medium text-slate-900 text-sm">{partner.rating}</span>
+                      <span className="text-slate-500 text-xs ml-1">({partner.reviews.toLocaleString()})</span>
                     </div>
                     <button className="text-indigo-600 hover:text-indigo-800 text-sm font-medium flex items-center">
                       Learn more
@@ -313,7 +308,7 @@ const Integrations = () => {
                   </div>
 
                   <div className="flex space-x-3">
-                    {integration.connected ? (
+                    {partner.connected ? (
                       <>
                         <button className="flex-1 bg-slate-100 text-slate-700 py-2 px-4 rounded-lg font-medium hover:bg-slate-200 transition-colors text-sm flex items-center justify-center">
                           <Settings className="h-4 w-4 mr-2" />
@@ -334,17 +329,16 @@ const Integrations = () => {
               ))}
             </div>
 
-            {/* Integration Marketplace */}
             <div className="mt-12 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-8 border border-indigo-200">
               <div className="text-center">
-                <h2 className="text-2xl font-bold text-slate-900 mb-4">Need a Custom Integration?</h2>
+                <h2 className="text-2xl font-bold text-slate-900 mb-4">Need a Travel Partner?</h2>
                 <p className="text-slate-600 mb-6 max-w-2xl mx-auto">
-                  Can't find the integration you need? Our team can build custom integrations for your business needs. 
-                  Connect any API or service to SmartMerchant.
+                  Can't find the travel service you need? Our team can connect with new travel partners for your needs. 
+                  Integrate any travel service or local provider with SmartTourist.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <button className="bg-indigo-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-colors">
-                    Request Custom Integration
+                    Request Travel Partner
                   </button>
                   <button className="border-2 border-indigo-600 text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-indigo-50 transition-colors">
                     View Documentation
@@ -359,4 +353,4 @@ const Integrations = () => {
   );
 };
 
-export default Integrations;
+export default TravelPartners;

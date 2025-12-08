@@ -9,112 +9,112 @@ const PricingPage = () => {
 
   const plans = [
     {
-      name: 'Starter',
+      name: 'Explorer',
       icon: Zap,
       price: isAnnual ? 799 : 999,
       originalPrice: 1500,
-      description: 'Perfect for student entrepreneurs and new businesses',
+      description: 'Perfect for solo travelers and weekend getaways',
       color: 'indigo',
       features: [
-        'Drag-and-drop store builder',
-        '2 platform integrations (Shopify + Razorpay)',
-        'Basic AI insights & automation',
-        'GST invoice generation',
+        'AI-powered trip planning',
+        '2 destination integrations',
+        'Basic travel insights & recommendations',
+        'Hotel & flight booking',
         'Email support',
-        'Mobile-responsive templates',
-        'Basic inventory management'
+        'Mobile-responsive itineraries',
+        'Basic travel insurance'
       ],
       transactionFee: '1.5%',
-      savings: 'vs 2.5-3% industry standard',
+      savings: 'vs 2.5-3% travel agents',
       popular: false
     },
     {
-      name: 'Growth',
+      name: 'Adventurer',
       icon: Users,
       price: isAnnual ? 2399 : 2999,
       originalPrice: 5000,
-      description: 'Ideal for growing SMEs ready to scale operations',
+      description: 'Ideal for families and group travelers',
       color: 'green',
       features: [
-        'Everything in Starter',
-        '5 platform integrations',
-        'AI-powered automation playbooks',
-        'Manufacturing hub access (10% commission)',
-        'WhatsApp marketing automation',
-        'Dedicated accountant service (₹2,000/month addon)',
-        'Advanced analytics dashboard',
+        'Everything in Explorer',
+        '5 destination packages',
+        'AI-powered itinerary optimization',
+        'Premium hotel & resort access',
+        '24/7 travel support',
+        'Dedicated travel consultant (₹2,000/month addon)',
+        'Advanced travel analytics',
         'Priority customer support',
-        'Multi-language support'
+        'Multi-language guides'
       ],
       transactionFee: '1.2%',
-      savings: 'Save ₹15,000/month vs competitors',
+      savings: 'Save ₹15,000/month vs traditional agents',
       popular: true
     },
     {
-      name: 'Scale',
+      name: 'Globetrotter',
       icon: Building,
       price: isAnnual ? 6399 : 7999,
       originalPrice: 12000,
-      description: 'For established businesses scaling across India',
+      description: 'For frequent travelers and luxury experiences',
       color: 'purple',
       features: [
-        'Everything in Growth',
-        'Unlimited platform integrations',
-        'Custom AI models & automations',
-        'Priority manufacturing partner network',
-        'Full accounting team access (₹5,000/month)',
-        'Multi-language customer support',
-        'White-label solutions',
-        'API access & webhooks',
-        'Custom onboarding & training'
+        'Everything in Adventurer',
+        'Unlimited destination packages',
+        'Custom AI travel planning',
+        'Priority access to luxury resorts',
+        'Full concierge service access (₹5,000/month)',
+        'Multi-language local guides',
+        'White-label travel solutions',
+        'API access & custom integrations',
+        'Personalized onboarding & training'
       ],
       transactionFee: '0.9%',
-      savings: 'Save ₹25,000/month vs traditional setup',
+      savings: 'Save ₹25,000/month vs traditional agencies',
       popular: false
     },
     {
       name: 'Enterprise',
       icon: Crown,
       price: 'Custom',
-      description: 'Custom solutions for large-scale operations',
+      description: 'Custom solutions for corporate travel and large groups',
       color: 'amber',
       features: [
-        'Everything in Scale',
-        'Dedicated manufacturing facilities',
-        'On-site accountant deployment',
-        'Custom compliance solutions',
-        'Multi-tenant architecture',
-        'Dedicated success manager',
-        'Custom integrations',
+        'Everything in Globetrotter',
+        'Dedicated travel facilities',
+        'On-site travel consultants',
+        'Custom travel compliance solutions',
+        'Multi-group architecture',
+        'Dedicated account manager',
+        'Custom travel packages',
         'SLA guarantees',
-        '24/7 phone support'
+        '24/7 VIP support'
       ],
       transactionFee: 'Negotiable',
-      savings: 'Custom pricing based on volume',
+      savings: 'Custom pricing based on group size',
       popular: false
     }
   ];
 
   const addOns = [
     {
-      name: 'Dedicated Accountant',
+      name: 'Personal Travel Consultant',
       price: '₹2,000/month',
-      description: 'Professional CA for GST filing, compliance, and financial planning'
+      description: 'Dedicated travel expert for personalized itinerary planning'
     },
     {
-      name: 'Full Accounting Team',
+      name: 'Full Concierge Service',
       price: '₹5,000/month',
-      description: 'Complete finance team with CA, bookkeeper, and tax consultant'
+      description: 'Complete travel management with local guides and premium services'
     },
     {
-      name: 'Manufacturing Hub Premium',
+      name: 'Premium Destinations Access',
       price: '5% commission',
-      description: 'Priority access to verified manufacturers with quality guarantees'
+      description: 'Priority access to luxury resorts and exclusive experiences'
     },
     {
-      name: 'AI Content Generator',
+      name: 'AI Travel Assistant',
       price: '₹1,500/month',
-      description: 'Unlimited product descriptions, marketing copy, and social media content'
+      description: 'Smart recommendations, real-time updates, and travel optimization'
     }
   ];
 
@@ -123,16 +123,14 @@ const PricingPage = () => {
       <Header />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-5xl font-bold text-slate-900 mb-6">
-            Choose Your Growth Plan
+            Choose Your Travel Experience
           </h1>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-8">
-            Save 40-60% compared to traditional e-commerce setups while creating jobs across India
+            Save 40-60% compared to traditional travel agencies while discovering amazing destinations across India
           </p>
           
-          {/* Annual Toggle */}
           <div className="flex items-center justify-center space-x-4 mb-8">
             <span className={`font-medium ${!isAnnual ? 'text-slate-900' : 'text-slate-500'}`}>
               Monthly
@@ -158,7 +156,6 @@ const PricingPage = () => {
           </div>
         </div>
 
-        {/* Pricing Cards */}
         <div className="grid lg:grid-cols-4 gap-8 mb-16">
           {plans.map((plan, index) => {
             const Icon = plan.icon;
@@ -203,7 +200,7 @@ const PricingPage = () => {
                           <span className="text-slate-500 ml-2">/month</span>
                         </div>
                         <div className="text-sm text-slate-500 line-through">₹{plan.originalPrice.toLocaleString()}</div>
-                        <div className="text-sm text-green-600 font-medium">Transaction fee: {plan.transactionFee}</div>
+                        <div className="text-sm text-green-600 font-medium">Booking fee: {plan.transactionFee}</div>
                       </div>
                     ) : (
                       <div className="text-3xl font-bold text-slate-900">{plan.price}</div>
@@ -239,9 +236,8 @@ const PricingPage = () => {
           })}
         </div>
 
-        {/* Add-ons Section */}
         <div className="bg-white rounded-2xl p-8 border border-slate-200 shadow-lg mb-16">
-          <h2 className="text-3xl font-bold text-slate-900 text-center mb-8">Professional Add-on Services</h2>
+          <h2 className="text-3xl font-bold text-slate-900 text-center mb-8">Premium Travel Services</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {addOns.map((addon, index) => (
               <div key={index} className="border border-slate-200 rounded-lg p-6 hover:shadow-md transition-shadow">
@@ -253,54 +249,52 @@ const PricingPage = () => {
           </div>
         </div>
 
-        {/* Comparison Table */}
         <div className="bg-white rounded-2xl p-8 border border-slate-200 shadow-lg">
-          <h2 className="text-3xl font-bold text-slate-900 text-center mb-8">Compare with Traditional Setup</h2>
+          <h2 className="text-3xl font-bold text-slate-900 text-center mb-8">Compare with Traditional Travel Agencies</h2>
           
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
                 <tr className="border-b border-slate-200">
                   <th className="text-left py-4 px-6 font-semibold text-slate-900">Feature</th>
-                  <th className="text-center py-4 px-6 font-semibold text-slate-900">Traditional Setup</th>
-                  <th className="text-center py-4 px-6 font-semibold text-green-600">SmartMerchant</th>
+                  <th className="text-center py-4 px-6 font-semibold text-slate-900">Traditional Agencies</th>
+                  <th className="text-center py-4 px-6 font-semibold text-green-600">SmartTourist</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-200">
                 <tr>
-                  <td className="py-4 px-6">Monthly Platform Cost</td>
+                  <td className="py-4 px-6">Monthly Service Cost</td>
                   <td className="py-4 px-6 text-center">₹15,000+</td>
                   <td className="py-4 px-6 text-center text-green-600 font-semibold">₹2,999</td>
                 </tr>
                 <tr>
-                  <td className="py-4 px-6">Transaction Fees</td>
+                  <td className="py-4 px-6">Booking Fees</td>
                   <td className="py-4 px-6 text-center">2.5-3%</td>
                   <td className="py-4 px-6 text-center text-green-600 font-semibold">1.2%</td>
                 </tr>
                 <tr>
-                  <td className="py-4 px-6">Accounting Services</td>
+                  <td className="py-4 px-6">Travel Consultant</td>
                   <td className="py-4 px-6 text-center">₹8,000/month</td>
                   <td className="py-4 px-6 text-center text-green-600 font-semibold">₹2,000/month</td>
                 </tr>
                 <tr>
-                  <td className="py-4 px-6">Manufacturing Network</td>
-                  <td className="py-4 px-6 text-center">❌</td>
-                  <td className="py-4 px-6 text-center text-green-600">✅ 500+ partners</td>
+                  <td className="py-4 px-6">Destination Network</td>
+                  <td className="py-4 px-6 text-center">❌ Limited</td>
+                  <td className="py-4 px-6 text-center text-green-600">✅ 500+ destinations</td>
                 </tr>
                 <tr>
-                  <td className="py-4 px-6">Job Creation Tracking</td>
+                  <td className="py-4 px-6">AI Trip Planning</td>
                   <td className="py-4 px-6 text-center">❌</td>
-                  <td className="py-4 px-6 text-center text-green-600">✅ Real-time metrics</td>
+                  <td className="py-4 px-6 text-center text-green-600">✅ Smart itineraries</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
         
-        {/* CTA */}
         <div className="text-center mt-16">
-          <h2 className="text-3xl font-bold text-slate-900 mb-4">Ready to Save 50% on Your E-commerce Costs?</h2>
-          <p className="text-xl text-slate-600 mb-8">Join 1000+ Indian entrepreneurs who've already made the switch</p>
+          <h2 className="text-3xl font-bold text-slate-900 mb-4">Ready to Save 50% on Your Travel Costs?</h2>
+          <p className="text-xl text-slate-600 mb-8">Join 1000+ travelers who've already discovered amazing destinations</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
               to="/dashboard" 
