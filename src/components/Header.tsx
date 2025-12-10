@@ -1913,7 +1913,7 @@ const Header = ({ isDashboard = false }) => {
                   </div>
                 )}
               </div>
-            </div>
+            </div>      
           </div>
         </div>
       </header>

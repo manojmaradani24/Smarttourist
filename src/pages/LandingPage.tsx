@@ -114,6 +114,22 @@ const LandingPage = () => {
     window.open(mapsUrl, '_blank');
   };
 
+  const goToDashboard = () => {
+    // Check if user is already logged in
+    const token = localStorage.getItem('token');
+    const user = localStorage.getItem('user');
+    
+    if (token && user) {
+      // User is logged in, navigate to dashboard
+      navigate('/dashboard');
+    } else {
+      // User is not logged in, show auth modal
+      setSelectedPlatform('traveler');
+      setShowAuthModal(true);
+      setIsLogin(true);
+    }
+  };
+
   const getPlatformName = (platform) => {
     switch(platform) {
       case 'traveler': return 'Smart Tourist Platform';
@@ -150,7 +166,7 @@ const LandingPage = () => {
                 </h2>
                 {!isLogin && (
                   <p className="text-sm text-slate-600 mt-1">
-                    Create your ${getPlatformName(selectedPlatform)} account
+                    Create your {getPlatformName(selectedPlatform)} account
                   </p>
                 )}
               </div>
@@ -376,16 +392,17 @@ const LandingPage = () => {
                   onClick={() => {
                     setSelectedPlatform('traveler');
                     setShowAuthModal(true);
+                    setIsLogin(false);
                   }}
                   className="bg-indigo-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-indigo-700 transition-colors text-center"
                 >
                   Login / Register
                 </button>
                 <button 
-                  onClick={openGoogleMaps}
+                  onClick={goToDashboard}
                   className="border-2 border-indigo-600 text-indigo-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-indigo-50 transition-colors"
                 >
-                  Explore Destinations
+                  Explore Website
                 </button>
               </div>
             </motion.div>
